@@ -1,16 +1,10 @@
 import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from "typeorm";
 
 @Entity()
-export class Webhook extends BaseEntity {
+export class Customer extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  callback_url: string;
-
-  @Column()
-  event: string;
-
-  @Column()
-  customer_id: number;
+  webhook_verif_token: string;
 }

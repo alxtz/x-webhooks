@@ -3,14 +3,19 @@ const router = express.Router();
 
 import addWebhook from "./addWebhook";
 import triggerWebhook from "./triggerWebhook";
+import newCustomer from "./newCustomer";
 
-type Events = "va_created" | "va_paid" | "disb_sent" | "batch_disb_sent";
+type Events =
+  | "fva_created"
+  | "fva_paid"
+  | "disb_created"
+  | "batch_disb_created";
 
 router.post(
   "/api/webhook/add",
   async (
     req: {
-      body: { event: Events; callback_url: string };
+      body: { event: Events; callback_url: string; customer_id: number };
     },
     resp
   ) => {
@@ -18,6 +23,7 @@ router.post(
       const created = await addWebhook({
         event: req.body.event,
         callbackUrl: req.body.callback_url,
+        customer_id: req.body.customer_id,
       });
       resp.status(200).send(created);
     } catch (e) {
@@ -38,5 +44,11 @@ router.post(
     resp.status(200).send({ foo: "triggered" });
   }
 );
+
+router.post("/api/customer/new", async (req, resp) => {
+  const result = await newCustomer();
+
+  resp.status(200).send(result);
+});
 
 export default router;

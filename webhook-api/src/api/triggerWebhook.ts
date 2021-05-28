@@ -10,16 +10,13 @@ export default async function ({ event }) {
       connection.createChannel(function (error1, channel) {
         if (error1) throw error1;
 
-        const queue = "hello";
-        const msg = "world";
+        const queue = "notif_queue";
 
         channel.assertQueue(queue, {
           durable: false,
         });
 
-        channel.sendToQueue(queue, Buffer.from(msg));
-
-        console.log(" [x] Sent %s", msg);
+        channel.sendToQueue(queue, Buffer.from(event));
       });
     });
   } catch (e) {

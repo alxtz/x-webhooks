@@ -1,10 +1,10 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
-export class CreateWebhookTable1622088293657 implements MigrationInterface {
+export class CreateCustomerTable1622109110968 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: "webhook",
+        name: "customer",
         columns: [
           {
             name: "id",
@@ -14,11 +14,7 @@ export class CreateWebhookTable1622088293657 implements MigrationInterface {
             generationStrategy: "increment",
           },
           {
-            name: "callback_url",
-            type: "varchar",
-          },
-          {
-            name: "event",
+            name: "webhook_verif_token",
             type: "varchar",
           },
         ],
@@ -28,6 +24,6 @@ export class CreateWebhookTable1622088293657 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable("webhook");
+    await queryRunner.dropTable("customer");
   }
 }
