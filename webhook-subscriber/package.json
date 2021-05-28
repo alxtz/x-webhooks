@@ -1,0 +1,17 @@
+{
+  "name": "webhook-subscriber",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon --exec ts-node src/index.ts --signal SIGTERM"
+  },
+  "dependencies": {
+    "@types/amqplib": "^0.5.17",
+    "amqplib-retryable": "^2.0.1",
+    "axios": "^0.21.1",
+    "knex": "^0.95.6",
+    "pg": "^8.6.0",
+    "request": "^2.88.2"
+  }
+}

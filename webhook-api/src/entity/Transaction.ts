@@ -1,10 +1,13 @@
 import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from "typeorm";
 
 @Entity()
-export class WebhookLog extends BaseEntity {
+export class Transaction extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  webhook_id: number;
+  customer_id: number;
+
+  @Column("jsonb")
+  body: any;
 }
