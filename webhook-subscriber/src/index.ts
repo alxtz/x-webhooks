@@ -89,7 +89,7 @@ Promise.resolve(amqplib.connect("amqp://localhost"))
   .then((conn) => conn.createChannel())
   .then((channel) =>
     retryable(channel, {
-      initialDelay: 1500,
+      initialDelay: 4000,
       maxRetries: 5,
       separator: ".",
     })
