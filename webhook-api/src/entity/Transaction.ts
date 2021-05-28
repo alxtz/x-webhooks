@@ -10,4 +10,10 @@ export class Transaction extends BaseEntity {
 
   @Column("jsonb")
   body: any;
+
+  @Column()
+  event: string;
+
+  @Column()
+  retry_count: number;
 }

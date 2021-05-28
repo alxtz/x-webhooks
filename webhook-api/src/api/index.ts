@@ -5,6 +5,8 @@ import addWebhook from "./addWebhook";
 import triggerWebhook from "./triggerWebhook";
 import newCustomer from "./newCustomer";
 import stimulateWebhook from "./stimulateWebhook";
+import undeliveredTransactions from "./undeliveredTransactions";
+import resendNotification from "./resendNotification";
 
 type Events =
   | "fva_created"
@@ -65,6 +67,24 @@ router.post("/api/customer/:id/:event", async (req, resp) => {
       event: req.params.event,
       customerId: Number(req.params.id),
     });
+    resp.status(200).send(result);
+  } catch (e) {
+    resp.status(400).send({ error: e });
+  }
+});
+
+router.get("/api/undelivered_transactions", async (req, resp) => {
+  try {
+    const result = await undeliveredTransactions();
+    resp.status(200).send(result);
+  } catch (e) {
+    resp.status(400).send({ error: e });
+  }
+});
+
+router.post("/api/transactions/:txn_id/retry", async (req, resp) => {
+  try {
+    const result = await resendNotification(Number(req.params.txn_id));
     resp.status(200).send(result);
   } catch (e) {
     resp.status(400).send({ error: e });

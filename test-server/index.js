@@ -12,7 +12,7 @@ app.post("*", function (req, res) {
   const rndm = Math.random();
   console.log("rndm", rndm);
 
-  if (rndm < 0.5) {
+  if (rndm < 0.85) {
     res.sendStatus(404);
   } else {
     res.sendStatus(200);

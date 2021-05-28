@@ -19,7 +19,6 @@ const getEventBody = (event) => {
         account_number: "886089999255322",
         is_single_use: false,
         expiration_date: "2052-05-26T17:00:00.000Z",
-        event_id: uuid(),
       };
       break;
     }
@@ -34,12 +33,10 @@ const getEventBody = (event) => {
 export default async function ({ event, customerId }) {
   const body = getEventBody(event);
 
-  console.log("body", body);
-  console.log("customerId", customerId);
-
   const result = await Transaction.create({
     body,
     customer_id: customerId,
+    event,
   }).save();
 
   console.log("result", result);

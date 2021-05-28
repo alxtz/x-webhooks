@@ -6,8 +6,8 @@ export default async function ({ event, callbackUrl }) {
   try {
     const data = {
       ...TEST_EVENTS[event],
-      event_id: uuid(),
       webhook_verif_token: null,
+      event_id: null,
     };
     const resp = await axios({
       method: "POST",
